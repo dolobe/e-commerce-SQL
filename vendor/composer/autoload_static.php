@@ -17,6 +17,7 @@ class ComposerStaticInit06a246fb7fd541d754d977d9b5f184ae
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
+            1 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
         ),
     );
 
