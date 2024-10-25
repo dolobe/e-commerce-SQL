@@ -9,7 +9,7 @@ if (isset($_GET['delete_id'])) {
     
     if ($stmt->execute()) {
         echo "Utilisateur supprimé avec succès!";
-        header("Location: index.php");
+        header("Location: user.php");
         exit;
     } else {
         echo "Erreur lors de la suppression: " . $stmt->error;
@@ -26,7 +26,7 @@ if (isset($_GET['delete_id'])) {
 </head>
 <body>
     <h1>Bienvenue dans mon application PHP</h1>
-    <p><a href="register.php">S'inscrire</a></p>
+    <p><a href="registerUser.php">S'inscrire</a></p>
 
     <h2>Liste des utilisateurs</h2>
     <table border="1">
@@ -49,7 +49,7 @@ if (isset($_GET['delete_id'])) {
                         <td>{$row['email']}</td>
                         <td>{$row['created_at']}</td>
                         <td>
-                            <a href='edit.php?id={$row['id_user']}'>Modifier</a>
+                            <a href='editUser.php?id={$row['id_user']}'>Modifier</a>
                             |
                             <a href='?delete_id={$row['id_user']}' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet utilisateur ?\");'>Supprimer</a>
                         </td>
