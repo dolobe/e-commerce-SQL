@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include '../Configuration/config.php';
 
 if (isset($_GET['delete_id'])) {
     $id_user = $_GET['delete_id'];
@@ -26,7 +26,13 @@ if (isset($_GET['delete_id'])) {
 </head>
 <body>
     <h1>Bienvenue dans mon application PHP</h1>
-    <p><a href="registerUser.php">S'inscrire</a></p>
+    <p><a href="Add/addUser.php">S'inscrire</a></p>
+
+    <h2>Recherche d'utilisateur</h2>
+    <form method="GET" action="user.php">
+        <input type="text" name="search" placeholder="Rechercher par ID, nom d'utilisateur ou email" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+        <button type="submit">Rechercher</button>
+    </form>
 
     <h2>Liste des utilisateurs</h2>
     <table border="1">
@@ -38,8 +44,12 @@ if (isset($_GET['delete_id'])) {
             <th>Action</th>
         </tr>
         <?php
-        $sql = "SELECT * FROM Users";
-        $result = $conn->query($sql);
+        $search = isset($_GET['search']) ? "%" . $_GET['search'] . "%" : "%";
+        $sql = "SELECT * FROM Users WHERE id_user LIKE ? OR username LIKE ? OR email LIKE ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $search, $search, $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
@@ -49,7 +59,7 @@ if (isset($_GET['delete_id'])) {
                         <td>{$row['email']}</td>
                         <td>{$row['created_at']}</td>
                         <td>
-                            <a href='editUser.php?id={$row['id_user']}'>Modifier</a>
+                            <a href='Edit/editUser.php?id={$row['id_user']}'>Modifier</a>
                             |
                             <a href='?delete_id={$row['id_user']}' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet utilisateur ?\");'>Supprimer</a>
                         </td>

@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include '../Configuration/config.php';
 
 if (isset($_GET['delete_id'])) {
     $id_address = $_GET['delete_id'];
@@ -30,7 +30,7 @@ $result = $conn->query($sql);
 </head>
 <body>
     <h1>Liste des Adresses</h1>
-    <p><a href="registerAddress.php">Ajouter une adresse</a></p>
+    <p><a href="Add/addAddress.php">Ajouter une adresse</a></p>
 
     <h2>Adresses</h2>
     <table border="1">
@@ -55,7 +55,7 @@ $result = $conn->query($sql);
                         <td>{$row['postal_code']}</td>
                         <td>{$row['country']}</td>
                         <td>
-                            <a href='editAddress.php?id={$row['id_address']}'>Modifier</a>
+                            <a href='Edit/editAddress.php?id={$row['id_address']}'>Modifier</a>
                             |
                             <a href='?delete_id={$row['id_address']}' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cette adresse ?\");'>Supprimer</a>
                         </td>
