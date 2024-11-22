@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name'], $_POST['descri
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier le Produit</title>
+    <link rel="stylesheet" href="../../CSS/edit.css">
 </head>
 <body>
     <h1>Modifier le Produit</h1>
@@ -65,6 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name'], $_POST['descri
         <button type="submit">Mettre à jour</button>
     </form>
 
-    <p><a href="product.php">Retour à la liste des produits</a></p>
+    <button onclick="window.history.back()">Retour</button>
 </body>
 </html>

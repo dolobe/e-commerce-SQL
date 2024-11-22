@@ -49,6 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username']) && isset($
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier l'utilisateur</title>
+    <link rel="stylesheet" href="../../CSS/edit.css">
+
 </head>
 <body>
     <h1>Modifier l'utilisateur</h1>
@@ -62,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username']) && isset($
         <button type="submit">Mettre à jour</button>
     </form>
 
-    <p><a href="index.php">Retour à la liste des utilisateurs</a></p>
+    <button onclick="window.history.back()">Retour</button>
 </body>
 </html>
 

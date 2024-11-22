@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_user']) && isset($_
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier la Commande</title>
+    <link rel="stylesheet" href="../../CSS/edit.css">
 </head>
 <body>
     <h1>Modifier la Commande</h1>
@@ -63,4 +64,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_user']) && isset($_
         <select id="status" name="status" required>
             <option value="pending" <?php if ($command['status'] == 'pending') echo 'selected'; ?>>En attente</option>
             <option value="shipped" <?php if ($command['status'] == 'shipped') echo 'selected'; ?>>Expédiée</option>
-            <option value
+            <option value="delivered" <?php if ($command['status'] == 'delivered') echo 'selected'; ?>>Livrée</option>
+            <option value="cancelled" <?php if ($command['status'] == 'cancelled') echo 'selected'; ?>>Annulée</option>
+        </select><br>
+
+        <button type="submit">Mettre à jour la commande</button>
+    </form>
+
+    <button onclick="window.history.back()">Retour</button>
+</body>
+</html>
+

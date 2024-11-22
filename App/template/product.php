@@ -23,6 +23,7 @@ if (isset($_GET['delete_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Produits</title>
+    <link rel="stylesheet" href="../CSS/table.css">
 </head>
 <body>
     <h1>Liste des Produits</h1>
@@ -74,5 +75,6 @@ if (isset($_GET['delete_id'])) {
         }
         ?>
     </table>
+    <button onclick="window.history.back()">Retour</button>
 </body>
 </html>

@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_command']) && isset
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier la Facture</title>
+    <link rel="stylesheet" href="../../CSS/edit.css">
 </head>
 <body>
     <h1>Modifier la Facture</h1>
@@ -57,6 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_command']) && isset
         <button type="submit">Mettre à jour</button>
     </form>
 
-    <p><a href="invoice.php">Retour à la liste des factures</a></p>
+    <button onclick="window.history.back()">Retour</button>
 </body>
 </html>

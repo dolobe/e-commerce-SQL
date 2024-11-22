@@ -9,42 +9,85 @@ include 'Configuration/config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page d'accueil - Mon Application PHP</title>
     <style>
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
             margin: 0;
             padding: 20px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         h1 {
-            color: #333;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 15px 25px;
-            margin: 10px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
+            text-align: center;
+            color: #ffffff;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px;
         }
 
         .container {
             max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
         }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px;
+            background-color: #00aaff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .button:hover {
+            background-color: #66d9ff;
+            transform: scale(1.05);
+        }
+
+        .button:active {
+            background-color: #0056b3;
+            transform: scale(0.98);
+        }
+
+        p a {
+            background-color: #00aaff;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        p a:hover {
+            background-color: #66d9ff;
+            transform: scale(1.05);
+        }
+
+        p a:active {
+            background-color: #0056b3;
+            transform: scale(0.98);
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
     </style>
+
 </head>
 <body>
     <div class="container">

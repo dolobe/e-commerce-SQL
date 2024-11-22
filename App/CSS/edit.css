@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: #1c2b36;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #66d9ff;
+    font-weight: bold;
+    text-align: left;
+}
+
+form input[type="text"],
+form input[type="email"] {
+    padding: 10px;
+    width: 100%;
+    border: 2px solid #00aaff;
+    border-radius: 8px;
+    background-color: #243b4a;
+    color: #ffffff;
+    margin-bottom: 20px;
+    transition: border 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus {
+    border-color: #66d9ff;
+    outline: none;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #00aaff;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+form button:hover {
+    background-color: #66d9ff;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+p button {
+    background-color: #00aaff;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+p button:hover {
+    background-color: #66d9ff;
+}
+
+a {
+    color: #00aaff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #66d9ff;
+    text-decoration: underline;
+}

@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['quantity'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier le Produit de la Commande</title>
+    <link rel="stylesheet" href="../../CSS/edit.css">
 </head>
 <body>
     <h1>Modifier le Produit de la Commande</h1>
@@ -53,6 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['quantity'])) {
         <button type="submit">Mettre à jour</button>
     </form>
 
-    <p><a href="command_product.php">Retour à la liste des produits dans la commande</a></p>
+    <button onclick="window.history.back()">Retour</button>
 </body>
 </html>

@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['street']) && isset($_P
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier l'adresse</title>
+    <link rel="stylesheet" href="../../CSS/edit.css">
 </head>
 <body>
     <h1>Modifier l'adresse</h1>
@@ -70,6 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['street']) && isset($_P
         <button type="submit">Mettre à jour</button>
     </form>
 
-    <p><a href="address.php">Retour à la liste des adresses</a></p>
+    <button onclick="window.history.back()">Retour</button>
 </body>
 </html>

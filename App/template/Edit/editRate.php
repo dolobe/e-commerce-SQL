@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $rating = $_POST['rating'];
     $comment = $_POST['comment'];
 
-    // Validation de la note
     if ($rating < 1 || $rating > 5) {
         echo "La note doit être comprise entre 1 et 5.";
         exit;
@@ -52,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier l'Évaluation</title>
+    <link rel="stylesheet" href="../../CSS/edit.css">
 </head>
 <body>
     <h1>Modifier l'Évaluation</h1>
@@ -71,6 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button type="submit">Mettre à jour</button>
     </form>
 
-    <p><a href="rate.php">Retour à la liste des évaluations</a></p>
+    <button onclick="window.history.back()">Retour</button>
 </body>
 </html>
