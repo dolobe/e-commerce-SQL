@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['quantity'])) {
 
     if ($stmt->execute()) {
         echo "Produit mis à jour avec succès!";
-        header("Location: command_product.php");
         exit;
     } else {
         echo "Erreur: " . $stmt->error;

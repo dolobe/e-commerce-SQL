@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_user'])) {
 
     if ($stmt->execute()) {
         echo "Panier mis à jour avec succès!";
-        header("Location: cart.php");
         exit;
     } else {
         echo "Erreur: " . $stmt->error;
@@ -54,6 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_user'])) {
         <button type="submit">Mettre à jour</button>
     </form>
 
-    <p><a href="cart.php">Retour à la liste des paniers</a></p>
+    <button onclick="window.history.back()">Retour</button>
 </body>
 </html>

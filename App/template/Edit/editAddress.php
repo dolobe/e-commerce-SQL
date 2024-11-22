@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['street']) && isset($_P
     
     if ($stmt->execute()) {
         echo "Adresse mise à jour avec succès!";
-        header("Location: address.php");
         exit;
     } else {
         echo "Erreur: " . $stmt->error;

@@ -35,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username']) && isset($
     
     if ($stmt->execute()) {
         echo "Utilisateur mis à jour avec succès!";
-        header("Location: index.php");
         exit;
     } else {
         echo "Erreur: " . $stmt->error;

@@ -31,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         echo "Photo mise à jour avec succès!";
-        header("Location: photo.php");
         exit;
     } else {
         echo "Erreur: " . $stmt->error;

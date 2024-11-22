@@ -31,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if ($stmt->execute()) {
         echo "Paiement mis à jour avec succès!";
-        header("Location: payment.php");
         exit;
     } else {
         echo "Erreur: " . $stmt->error;

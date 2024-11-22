@@ -30,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_command']) && isset
 
     if ($stmt->execute()) {
         echo "Facture mise à jour avec succès!";
-        header("Location: invoice.php");
         exit;
     } else {
         echo "Erreur: " . $stmt->error;

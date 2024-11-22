@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['quantity'])) {
 
     if ($stmt->execute()) {
         echo "Produit mis à jour avec succès!";
-        header("Location: cart_product.php");
         exit;
     } else {
         echo "Erreur: " . $stmt->error;
@@ -54,6 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['quantity'])) {
         <button type="submit">Mettre à jour</button>
     </form>
 
-    <p><a href="cart_product.php">Retour à la liste des produits dans le panier</a></p>
+    <button onclick="window.history.back()">Retour</button>
 </body>
 </html>
