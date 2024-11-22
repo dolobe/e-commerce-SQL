@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_user']) && isset($_
 
     if ($stmt->execute()) {
         echo "Commande mise à jour avec succès!";
-        header("Location: command.php");
         exit;
     } else {
         echo "Erreur: " . $stmt->error;

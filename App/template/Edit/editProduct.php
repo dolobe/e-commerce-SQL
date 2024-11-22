@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name'], $_POST['descri
     
     if ($stmt->execute()) {
         echo "Produit mis à jour avec succès!";
-        header("Location: product.php");
         exit;
     } else {
         echo "Erreur: " . $stmt->error;

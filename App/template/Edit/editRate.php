@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         echo "Évaluation mise à jour avec succès!";
-        header("Location: rate.php");
         exit;
     } else {
         echo "Erreur: " . $stmt->error;
