@@ -28,6 +28,12 @@ if (isset($_GET['delete_id'])) {
     <h1>Liste des Produits dans la Commande</h1>
     <p><a href="Add/addCommandProduct.php">Ajouter un Produit à la Commande</a></p>
 
+    <h2>Rechercher un Produit dans une Commande</h2>
+    <form method="GET" action="command_product.php">
+        <input type="text" name="search" placeholder="Rechercher par ID Commande, Produit ou Quantité" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+        <button type="submit">Rechercher</button>
+    </form>
+
     <table border="1">
         <tr>
             <th>ID Command Product</th>
@@ -37,8 +43,16 @@ if (isset($_GET['delete_id'])) {
             <th>Action</th>
         </tr>
         <?php
-        $sql = "SELECT * FROM command_product";
-        $result = $conn->query($sql);
+        $search = isset($_GET['search']) ? "%" . $_GET['search'] . "%" : "%";
+        $sql = "SELECT * FROM command_product 
+                WHERE id_command_product LIKE ? 
+                OR id_command LIKE ? 
+                OR id_product LIKE ? 
+                OR quantity LIKE ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssss", $search, $search, $search, $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {

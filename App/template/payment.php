@@ -1,7 +1,6 @@
 <?php
 include '../Configuration/config.php';
 
-// Supprimer un paiement si un ID de suppression est fourni
 if (isset($_GET['delete_id'])) {
     $id_payment = $_GET['delete_id'];
     $sql = "DELETE FROM payment WHERE id_payment = ?";
@@ -29,6 +28,12 @@ if (isset($_GET['delete_id'])) {
     <h1>Liste des Paiements</h1>
     <p><a href="Add/addPayment.php">Ajouter un Paiement</a></p>
 
+    <h2>Rechercher un Paiement</h2>
+    <form method="GET" action="payment.php">
+        <input type="text" name="search" placeholder="Rechercher par ID, ID Utilisateur, Type ou Infos" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+        <button type="submit">Rechercher</button>
+    </form>
+
     <table border="1">
         <tr>
             <th>ID</th>
@@ -38,11 +43,19 @@ if (isset($_GET['delete_id'])) {
             <th>Action</th>
         </tr>
         <?php
-        $sql = "SELECT * FROM payment";
-        $result = $conn->query($sql);
+        $search = isset($_GET['search']) ? "%" . $_GET['search'] . "%" : "%";
+        $sql = "SELECT * FROM payment 
+                WHERE id_payment LIKE ? 
+                OR id_user LIKE ? 
+                OR payment_type LIKE ? 
+                OR payment_info LIKE ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssss", $search, $search, $search, $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
                 echo "<tr>
                         <td>{$row['id_payment']}</td>
                         <td>{$row['id_user']}</td>

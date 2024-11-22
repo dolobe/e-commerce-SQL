@@ -1,7 +1,6 @@
 <?php
 include '../Configuration/config.php';
 
-// Supprimer une évaluation si un ID de suppression est fourni
 if (isset($_GET['delete_id'])) {
     $id_rate = $_GET['delete_id'];
     $sql = "DELETE FROM rate WHERE id_rate = ?";
@@ -29,6 +28,12 @@ if (isset($_GET['delete_id'])) {
     <h1>Liste des Évaluations</h1>
     <p><a href="Add/addRate.php">Ajouter une Évaluation</a></p>
 
+    <h2>Rechercher une Évaluation</h2>
+    <form method="GET" action="rate.php">
+        <input type="text" name="search" placeholder="Rechercher par ID, ID Utilisateur, ID Produit, Note ou Commentaire" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+        <button type="submit">Rechercher</button>
+    </form>
+
     <table border="1">
         <tr>
             <th>ID</th>
@@ -39,8 +44,17 @@ if (isset($_GET['delete_id'])) {
             <th>Action</th>
         </tr>
         <?php
-        $sql = "SELECT * FROM rate";
-        $result = $conn->query($sql);
+        $search = isset($_GET['search']) ? "%" . $_GET['search'] . "%" : "%";
+        $sql = "SELECT * FROM rate 
+                WHERE id_rate LIKE ? 
+                OR id_user LIKE ? 
+                OR id_product LIKE ? 
+                OR rating LIKE ? 
+                OR comment LIKE ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssss", $search, $search, $search, $search, $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {

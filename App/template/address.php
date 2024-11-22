@@ -1,24 +1,36 @@
 <?php
 include '../Configuration/config.php';
 
+$search_term = "";
+
+if (isset($_GET['search'])) {
+    $search_term = $_GET['search'];
+    $sql = "SELECT * FROM address WHERE street LIKE ? OR city LIKE ? OR postal_code LIKE ?";
+    $stmt = $conn->prepare($sql);
+    $search_term = "%" . $search_term . "%";
+    $stmt->bind_param("sss", $search_term, $search_term, $search_term);
+} else {
+    $sql = "SELECT * FROM address";
+    $stmt = $conn->prepare($sql);
+}
+
+$stmt->execute();
+$result = $stmt->get_result();
+
 if (isset($_GET['delete_id'])) {
     $id_address = $_GET['delete_id'];
-    
     $sql = "DELETE FROM address WHERE id_address = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id_address);
     
     if ($stmt->execute()) {
         echo "<script>alert('Adresse supprimée avec succès!');</script>";
-        header("Location: address.php " . $_SERVER['PHP_SELF']);
+        header("Location: address.php");
         exit;
     } else {
         echo "Erreur lors de la suppression: " . $stmt->error;
     }
 }
-
-$sql = "SELECT * FROM address";
-$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +42,12 @@ $result = $conn->query($sql);
 </head>
 <body>
     <h1>Liste des Adresses</h1>
+    
+    <form method="GET" action="">
+        <input type="text" name="search" value="<?php echo htmlspecialchars($search_term); ?>" placeholder="Rechercher par rue, ville ou code postal" />
+        <button type="submit">Rechercher</button>
+    </form>
+
     <p><a href="Add/addAddress.php">Ajouter une adresse</a></p>
 
     <h2>Adresses</h2>
@@ -44,7 +62,6 @@ $result = $conn->query($sql);
             <th>Action</th>
         </tr>
         <?php
-
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>

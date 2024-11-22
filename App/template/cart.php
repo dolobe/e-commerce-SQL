@@ -6,7 +6,7 @@ if (isset($_GET['delete_id'])) {
     $sql = "DELETE FROM cart WHERE id_cart = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id_cart);
-    
+
     if ($stmt->execute()) {
         echo "Panier supprimé avec succès!";
         header("Location: cart.php");
@@ -28,6 +28,12 @@ if (isset($_GET['delete_id'])) {
     <h1>Liste des Paniers</h1>
     <p><a href="Add/addCart.php">Ajouter un Panier</a></p>
 
+    <h2>Rechercher un Panier</h2>
+    <form method="GET" action="cart.php">
+        <input type="text" name="search" placeholder="Rechercher par ID Panier ou ID Utilisateur" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+        <button type="submit">Rechercher</button>
+    </form>
+
     <table border="1">
         <tr>
             <th>ID Panier</th>
@@ -36,8 +42,12 @@ if (isset($_GET['delete_id'])) {
             <th>Action</th>
         </tr>
         <?php
-        $sql = "SELECT * FROM cart";
-        $result = $conn->query($sql);
+        $search = isset($_GET['search']) ? "%" . $_GET['search'] . "%" : "%";
+        $sql = "SELECT * FROM cart WHERE id_cart LIKE ? OR id_user LIKE ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $search, $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {

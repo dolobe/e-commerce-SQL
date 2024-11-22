@@ -28,6 +28,12 @@ if (isset($_GET['delete_id'])) {
     <h1>Liste des Commandes</h1>
     <p><a href="Add/addCommand.php">Ajouter une Commande</a></p>
 
+    <h2>Rechercher une Commande</h2>
+    <form method="GET" action="command.php">
+        <input type="text" name="search" placeholder="Rechercher par ID Commande, Utilisateur ou Statut" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+        <button type="submit">Rechercher</button>
+    </form>
+
     <table border="1">
         <tr>
             <th>ID Commande</th>
@@ -39,8 +45,15 @@ if (isset($_GET['delete_id'])) {
             <th>Action</th>
         </tr>
         <?php
-        $sql = "SELECT * FROM command";
-        $result = $conn->query($sql);
+        $search = isset($_GET['search']) ? "%" . $_GET['search'] . "%" : "%";
+        $sql = "SELECT * FROM command 
+                WHERE id_command LIKE ? 
+                OR id_user LIKE ? 
+                OR status LIKE ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $search, $search, $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
